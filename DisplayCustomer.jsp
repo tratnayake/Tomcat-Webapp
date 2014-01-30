@@ -11,7 +11,19 @@
  ------------------------------------------------------------------------
 -->
 
-<%@ include file="template/header.jsp" %>
+<!-- calls Customer Bean for the session -->
+<jsp:useBean id="model" class="model.Customer" scope="session"/>
+
+<html>
+<head>
+	<title>Title</title>
+	<link rel="stylesheet" href="assets/main.css">
+</head>
+
+<body>
+	<header>
+		<%@ include file="template/header.jsp" %>
+	</header>
 	
 	<section>
 	
@@ -46,17 +58,17 @@
 				<tr>
 					<td>
 						<form action="ConfirmCustomerController.jsp">
-							<button class="btn" name="option" type="submit" value="confirm">Confirm</button>
+							<input class="btn" type="submit"  value="Confirm">
 						</form>
 					</td>
 					<td>
 						<form action="CustomerOptionController.jsp">
-							<button class="btn" name="option" type="submit" value="cancel">Cancel</button>
+							<input class="btn" type="submit" name="option" value="Cancel">
 						</form>
 					</td>
 					<td>
 						<form action="CustomerOptionController.jsp">
-							<button class="btn" name="option" type="submit" value="return">Return To Form</button>
+							<input class="btn" type="submit" name="option" value="ReturnToForm">
 						</form>
 					</td>	
 				</tr>					
@@ -66,5 +78,8 @@
 		</div> <!-- formcontainer -->	
 	</section>
 	
-
-<%@ include file="template/footer.jsp" %>
+	<footer>
+		<%@ include file="template/footer.jsp" %>
+	</footer>
+</body>
+</html>

@@ -10,12 +10,21 @@
  ------------------------------------------------------------------------
 -->
 
-<%@ include file="template/header.jsp" %>
 
+<html>
+<head>
+	<title>Wacko Products</title>
+	<link rel="stylesheet" href="assets/main.css">
+</head>
+
+<body>
+	<header>
+		<%@ include file="template/header.jsp" %>
+	</header>
 	
 	
 	<summary>
-		"WACKO Furniture" is a online furniture company. If you're looking for tables, chairs, or couches, you've come to the right place.	
+		About the company.	
 	</summary>
 	
 	
@@ -31,4 +40,15 @@
 		</form>
 	</section> 
 	
-<%@ include file="template/footer.jsp" %>
+	
+	
+	
+	<footer>
+		<%@ include file="template/footer.jsp" %>
+	</footer>
+
+
+
+
+</body>
+</html>

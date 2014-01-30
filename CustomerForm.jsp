@@ -10,8 +10,13 @@
  ------------------------------------------------------------------------
 -->
 
-<%@ include file="template/header.jsp" %>
+<html>
+<head>
+	<title>Customer Form</title>
+	<link rel="stylesheet" href="assets/main.css">
+</head>
 
+<body> 
 	<section>
 	
 		<!-- Form layout -->
@@ -22,28 +27,23 @@
 				<table class="form">
 				  <tr class="textfield">	    
 				  	<td><h3>First Name</h3></td>
-				    <td><input  type="text" name="firstName" id="firstName" placeholder="FIRST NAME"
-				    			value="<jsp:getProperty name="model" property="firstName" />" required></td>
+				    <td><input type="text" name="firstName" id="firstName" placeholder="FIRST NAME" required></td>
 				  </tr>
 				  <tr class="textfield">	    
 				    <td><h3>Last Name</h3></td>
-				    <td><input  type="text" name="lastName" id="lastName" placeholder="LAST NAME"
-				    			value="<jsp:getProperty name="model" property="lastName" />" required></td>
+				    <td><input type="text" name="lastName" id="lastName" placeholder="LAST NAME" required></td>
 				  </tr>
 				  <tr class="textfield">	    
 				  	<td><h3>Address</h3></td>
-				    <td><input  type="text" name="address" id="address" placeholder="ADDRESS"
-				    			value="<jsp:getProperty name="model" property="address" />" required></td>
+				    <td><input type="text" name="address" id="address" placeholder="ADDRESS" required></td>
 				  </tr>
 				  <tr class="textfield">	    
 				    <td><h3>Email</h3></td>
-				    <td><input  type="text" name="email" id="email" placeholder="EMAIL"
-				    			value="<jsp:getProperty name="model" property="email" />" required></td>
+				    <td><input type="text" name="email" id="email" placeholder="EMAIL" required></td>
 				  </tr>
 				  <tr class="textfield">	    
 				    <td><h3>Phone Number</h3></td>
-				    <td><input  type="text" name="phoneNumber" id="phoneNumber" placeholder="PHONE NUMBER"
-				    			value="<jsp:getProperty name="model" property="phoneNumber" />" required></td>
+				    <td><input type="text" name="phoneNumber" id="phoneNumber" placeholder="PHONE NUMBER" required></td>
 				  </tr>
 				  <tr>
 					<td><button class="button" type="submit" value="submit">SUBMIT</button></td>
@@ -54,4 +54,12 @@
 		</div> <!-- formcontainer -->
 	</section>
 
-<%@ include file="template/footer.jsp" %>
+	<footer>
+		<%@ include file="template/footer.jsp" %>
+	</footer>
+
+
+
+
+</body>
+</html>

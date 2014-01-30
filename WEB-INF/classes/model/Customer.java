@@ -4,11 +4,11 @@ public class Customer {
     String firstName, lastName, address, phoneNumber, email;
 
 	public Customer() {
-		firstName = "";
-		lastName = "";
-		address = "";
-		phoneNumber = "";
-		email = "";
+		firstName = null;
+		lastName = null;
+		address = null;
+		phoneNumber = null;
+		email = null;
 	}
 
     public void setFirstName( String value )
