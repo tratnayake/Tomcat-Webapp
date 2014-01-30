@@ -42,25 +42,19 @@
 			  </tr>
 			</table>
 			
-			<table>
-				<tr>
-					<td>
+
 						<form action="ConfirmCustomerController.jsp">
 							<button class="btn" name="option" type="submit" value="confirm">Confirm</button>
 						</form>
-					</td>
-					<td>
+
 						<form action="CustomerOptionController.jsp">
 							<button class="btn" name="option" type="submit" value="cancel">Cancel</button>
 						</form>
-					</td>
-					<td>
+
 						<form action="CustomerOptionController.jsp">
 							<button class="btn" name="option" type="submit" value="return">Return To Form</button>
 						</form>
-					</td>	
-				</tr>					
-			</table>
+
 
 			
 		</div> <!-- formcontainer -->	

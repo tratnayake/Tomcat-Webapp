@@ -45,10 +45,9 @@
 				    <td><input  type="text" name="phoneNumber" id="phoneNumber" placeholder="PHONE NUMBER"
 				    			value="<jsp:getProperty name="model" property="phoneNumber" />" required></td>
 				  </tr>
-				  <tr>
-					<td><button class="button" type="submit" value="submit">SUBMIT</button></td>
-				  </tr>
-				</table
+				</table>
+					<button class="btn" type="submit" value="submit">SUBMIT</button>
+
 			</form>  
 			
 		</div> <!-- formcontainer -->
