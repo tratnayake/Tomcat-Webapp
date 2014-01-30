@@ -11,19 +11,7 @@
  ------------------------------------------------------------------------
 -->
 
-<!-- calls Customer Bean for the session -->
-<jsp:useBean id="model" class="model.Customer" scope="session"/>
-
-<html>
-<head>
-	<title>Title</title>
-	<link rel="stylesheet" href="assets/main.css">
-</head>
-
-<body>
-	<header>
-		<%@ include file="template/header.jsp" %>
-	</header>
+<%@ include file="template/header.jsp" %>
 	
 	<section>
 	
@@ -78,8 +66,5 @@
 		</div> <!-- formcontainer -->	
 	</section>
 	
-	<footer>
-		<%@ include file="template/footer.jsp" %>
-	</footer>
-</body>
-</html>
+
+<%@ include file="template/footer.jsp" %>

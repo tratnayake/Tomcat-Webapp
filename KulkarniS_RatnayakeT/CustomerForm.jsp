@@ -10,16 +10,8 @@
  ------------------------------------------------------------------------
 -->
 
-<!-- calls Customer Bean for the session -->
-<jsp:useBean id="model" class="model.Customer" scope="session"/>
+<%@ include file="template/header.jsp" %>
 
-<html>
-<head>
-	<title>Customer Form</title>
-	<link rel="stylesheet" href="assets/main.css">
-</head>
-
-<body> 
 	<section>
 	
 		<!-- Form layout -->
@@ -62,10 +54,4 @@
 		</div> <!-- formcontainer -->
 	</section>
 
-	<footer>
-		<%@ include file="template/footer.jsp" %>
-	</footer>
-
-
-</body>
-</html>
+<%@ include file="template/footer.jsp" %>
