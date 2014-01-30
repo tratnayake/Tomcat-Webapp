@@ -24,7 +24,7 @@
 	
 	
 	<summary>
-		About the company.	
+		"WACKO Furniture" is a online furniture company. If you're looking for tables, chairs, or couches, you've come to the right place.	
 	</summary>
 	
 	

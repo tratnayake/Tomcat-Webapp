@@ -14,21 +14,14 @@
    
     if (Clicked.equals("cancel"))
     {
-		session.invalidate();
-		out.println(Clicked); %>
-        <jsp:forward page="index.jsp" />
-    
-    
-                          
-               <%}
+		session.invalidate();%>
+        <jsp:forward page="index.jsp" />      
+  <%}
       
-                else { 
-                        out.println(Clicked); %>
-      
-                           
-            <jsp:forward page="CustomerForm.jsp" />
-                    <% }
-                       out.println("test"); %>
+	else
+	{%>
+		<jsp:forward page="CustomerForm.jsp" />
+  <%}%>
 
 
    
