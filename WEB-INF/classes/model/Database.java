@@ -16,7 +16,17 @@ public Database(){
     
 	
 //more methods  ...
-
+  public void connect() {
+    }
+    
+    public void close() {
+    }
+    
+    public String saveCustomer(String IName, String fName, String address, String email, String phone) {
+    }
+    
+    public String saveCustomer (CustomerBean cb) {
+    {
 
 	// You will need to add some parameters
       public String saveCustomer(String lName, String fName,String phone){ 
