@@ -9,28 +9,19 @@
  ------------------------------------------------------------------------
 -->
 
-<% out.println(request.getParameter("option")); 
+<% 
+	String Clicked = request.getParameter("option");
    
-   String Clicked = request.getParameter("option");
-   
-            if (Clicked.equals("Cancel")){
-                    session.invalidate();
-                    out.println(Clicked);
-   
-                        %>
-                        <jsp:forward page="index.jsp" />
-    
-    
-                          
-               <%}
+    if (Clicked.equals("cancel"))
+    {
+		session.invalidate();%>
+        <jsp:forward page="index.jsp" />      
+  <%}
       
-                else { 
-                        out.println(Clicked); %>
-      
-                           
-            <jsp:forward page="CustomerForm.jsp" />
-                    <% }
-                       out.println("test"); %>
-           
-       
+	else
+	{%>
+		<jsp:forward page="CustomerForm.jsp" />
+  <%}%>
+
+
    
