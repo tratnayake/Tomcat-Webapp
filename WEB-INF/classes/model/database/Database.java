@@ -14,18 +14,76 @@ private String dbdriver = "sun.jdbc.odbc.JdbcOdbcDriver" ;
 
 public Database(){ }
     
-    
-  private void connect() {
-    }
-    
-    private void close() {
-    }
-    
-    public String saveCustomer(String IName, String fName, String address, String email, String phone){
-    return "Button Has Been Pressed!";
-    }
-   
+	
+//more methods  ...
 
 
 	// You will need to add some parameters
+      public String saveCustomer(String lName, String fName,String phone){ 
+
+       result = connect();
+
+	  query  = " insert into Customer (lastName,firstName,phoneNumber)";
+      query += " values (";
+      query += "'" + lName + "',";
+      query += "'" + fName + "',";
+      query += "'" + phone + "')";
+	  try{
+		 stmt.execute(query);
+	  }
+       catch (SQLException e){   
+		   result  = " Save Customer:  Error processing the SQL!";
+		   result += " <br/>" +  e.toString();
+      }
+	  finally{
+	  close();
+	  }
+	  return result;
+     }
+    
+	
+	//More methods  ...
+
+/*--------------------------------Private ---------------------------------------*/
+
+private String connect(){
+    try
+    {
+		//Load driver
+          Class.forName(dbdriver);
+              /*  getConnection(URL) */
+Connection con = DriverManager.getConnection(dburl);
+        
+              /*  create Statement */
+		String query = "select * from product;";
+        Statement stm = con.createStatement();
+        stm.executeQuery(query);
     }
+    catch (ClassNotFoundException e)
+    {   result  = " Error creating database drive class!";
+        result += " <br/>" +  e.toString();
+    }
+    catch (SQLException e)
+    {   result  = " Error processing connect!";
+        result += " <br/>" +  e.toString();
+    }  
+	return result;
+  }
+
+  private String close(){
+        try
+        {   if (dbconn != null)
+            {
+			stmt.close();
+			dbconn.close(); }
+        }
+        catch (SQLException e)
+        {   result  = "Error in closing connection.";
+            result += " <br/>" +  e.toString();
+        }
+		return result;
+    }
+
+  
+    
+}
