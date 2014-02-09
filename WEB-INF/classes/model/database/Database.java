@@ -52,11 +52,11 @@ private String connect(){
 		//Load driver
           Class.forName(dbdriver);
               /*  getConnection(URL) */
-Connection con = DriverManager.getConnection(dburl);
+Connection dbconn = DriverManager.getConnection(dburl);
         
               /*  create Statement */
 		String query = "select * from product;";
-        Statement stm = con.createStatement();
+        Statement stm = dbconn.createStatement();
         stm.executeQuery(query);
     }
     catch (ClassNotFoundException e)
