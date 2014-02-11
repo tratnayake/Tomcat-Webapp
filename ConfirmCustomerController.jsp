@@ -8,6 +8,8 @@
  ------------------------------------------------------------------------
 -->
 
-<jsp:useBean id="model" class="database.Database" scope="session"/>
+<jsp:useBean id="model" class="model.Customer" scope="session"/>
 
-<% model.saveCustomer("one","two","three","four","five"); %> 
+
+
+<% out.println(model.save()); %> 

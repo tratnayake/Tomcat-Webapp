@@ -19,17 +19,20 @@ public Database(){ }
 
 
 	// You will need to add some parameters
-      public String saveCustomer(String lName, String fName,String phone){ 
+      public String saveCustomer(String lName, String fName, String address, String email, String phone){ 
 
        result = connect();
 
-	  query  = " insert into Customer (lastName,firstName,phoneNumber)";
+	  query  = " insert into Customer (lastName,firstName,address,email,phone)";
       query += " values (";
       query += "'" + lName + "',";
       query += "'" + fName + "',";
+	  query += "'" + address + "',";
+	  query += "'" + email + "',";
       query += "'" + phone + "')";
 	  try{
 		 stmt.execute(query);
+		 System.out.println("method invoked");
 	  }
        catch (SQLException e){   
 		   result  = " Save Customer:  Error processing the SQL!";
@@ -42,6 +45,7 @@ public Database(){ }
      }
     
 	
+	
 	//More methods  ...
 
 /*--------------------------------Private ---------------------------------------*/
@@ -52,12 +56,13 @@ private String connect(){
 		//Load driver
           Class.forName(dbdriver);
               /*  getConnection(URL) */
-Connection con = DriverManager.getConnection(dburl);
+Connection dbconn = DriverManager.getConnection(dburl);
         
               /*  create Statement */
 		String query = "select * from product;";
-        Statement stm = con.createStatement();
-        stm.executeQuery(query);
+         stmt = dbconn.createStatement();
+         stmt = dbconn.createStatement();
+        
     }
     catch (ClassNotFoundException e)
     {   result  = " Error creating database drive class!";

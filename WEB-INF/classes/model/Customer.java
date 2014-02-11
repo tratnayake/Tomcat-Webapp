@@ -1,7 +1,9 @@
 package model;
+import database.Database;
 
 public class Customer {
     String firstName, lastName, address, phoneNumber, email;
+	Database database = new Database();
 
 	public Customer() {
 		firstName = "";
@@ -45,5 +47,9 @@ public class Customer {
     public String getEmail() { return email; }
     
     public String getPhoneNumber() { return phoneNumber; }
+	
+	public String save(){
+	return database.saveCustomer(firstName,lastName,address,email,phoneNumber);
+	}
     
 }
