@@ -14,6 +14,8 @@ private String dbdriver = "sun.jdbc.odbc.JdbcOdbcDriver" ;
 public String customerid = "";
 public String productTable = "";
 public String productId = "";
+public String orderId = "";
+
 
 
 public Database(){ }
@@ -121,7 +123,7 @@ public Database(){ }
                         }    
                     }
                                   
-                    productTable += "<td><input type=\"number\" name=\"" + productId +"\" min=\"0\"></td>";
+                    productTable += "<td><input type=\"number\" name=\"" + productId +"\" min=\"0\" value=\"0\"></td>";
                     productTable += "</tr>";
                 }
                 productTable += "</table>";
@@ -139,6 +141,48 @@ public Database(){ }
 
         return result;    
     }
+    
+    
+    public String order()
+    {
+            result = connect();
+	
+	    query  = " select orderId from OrderInfo";
+	    
+	    try{
+	        if (stmt.execute(query))
+            {
+                ResultSet searchResult = stmt.getResultSet();         
+                
+                if (searchResult != null)
+                {
+                    while (searchResult.next())
+                    {
+                        orderId = "";
+                        orderId = searchResult.getString("orderId");
+                    }    
+                }
+                else
+                {
+	                orderId = "1";
+                }    
+            }           
+            result = orderId;
+	    }
+	    
+	    catch (SQLException e){   
+	        result  = " Save Customer:  Error processing the SQL!";
+	        result += " <br/>" +  e.toString();
+	    }
+	    finally{
+	    close();
+	    }
+	    return result;
+	    	    
+    }
+    
+    
+    
 
 /*--------------------------------Private ---------------------------------------*/
 
