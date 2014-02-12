@@ -9,6 +9,8 @@
  ------------------------------------------------------------------------
 -->
 
+<jsp:useBean id="model" class="model.Customer" scope="session"/>
+
 <% 
 	String Clicked = request.getParameter("option");
    
@@ -16,6 +18,13 @@
     {
 		session.invalidate();%>
         <jsp:forward page="index.jsp" />      
+  <%}
+  
+	else if (Clicked.equals("confirm"))
+    {
+		model.save(); 
+		model.getCustomerId(); %>
+        <jsp:forward page="OrderForm.jsp" />      
   <%}
       
 	else

@@ -45,7 +45,7 @@
 			<table>
 				<tr>
 					<td>
-						<form action="ConfirmCustomerController.jsp">
+						<form action="CustomerOptionController.jsp">
 							<button class="btn" name="option" type="submit" value="confirm">Confirm</button>
 						</form>
 					</td>
