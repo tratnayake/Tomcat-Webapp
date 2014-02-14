@@ -143,7 +143,7 @@ public Database(){ }
     }
     
     
-    public String order()
+    public String nextOrderID()
     {
             result = connect();
 	
@@ -168,6 +168,45 @@ public Database(){ }
                 }    
             }           
             result = orderId;
+	    }
+	    
+	    catch (SQLException e){   
+	        result  = " Save Customer:  Error processing the SQL!";
+	        result += " <br/>" +  e.toString();
+	    }
+	    finally{
+	    close();
+	    }
+	    return result;
+	    	    
+    }
+    
+        public String nextLineItemId()
+    {
+            String lineItemId = "";
+            result = connect();
+	
+	    query  = " select lineItemId from LineItem";
+	    
+	    try{
+	        if (stmt.execute(query))
+            {
+                ResultSet searchResult = stmt.getResultSet();         
+                
+                if (searchResult != null)
+                {
+                    while (searchResult.next())
+                    {
+                        lineItemId = "";
+                        lineItemId = searchResult.getString("lineItemId");
+                    }    
+                }
+                else
+                {
+	                lineItemId = "1";
+                }    
+            }           
+            result = lineItemId;
 	    }
 	    
 	    catch (SQLException e){   

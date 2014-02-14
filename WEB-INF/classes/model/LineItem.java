@@ -1,19 +1,27 @@
 package model;
 
 public class LineItem {
-    String lineitemId, productId, orderId;
+    String LineItemId, productId, orderId;
     int quantity;
+    double totalprice,price;
+    
 
     public LineItem() {
-        lineitemId = "";
+        LineItemId = "";
         quantity = 0;
         productId = "";
-        orderId = "";         
+        totalprice = 0.0;
+        orderId ="";
+
     }
 
-    public void setLineitemId( String value )
+    
+    public void setOrderId (String value){
+        orderId = value;
+    }
+    public void setLineItemId( String value )
     {
-        lineitemId = value;
+        LineItemId = value;
     }
 
     public void setProductId( String value )
@@ -21,21 +29,37 @@ public class LineItem {
         productId = value;
     }
 
-    public void setOrderId( String value )
-    {
-        orderId = value;
-    }
-
+   
+    
     public void setQuantity( int value )
     {
         quantity = value;
     }
+    
 
-    public String getLineitemId() { return lineitemId; }
+    
+    public void setPrice (double value){
+        price = value;
+    }
+    
+    public void setTotalPrice(){
+        totalprice = price * quantity;
+    }
+  
+
+    public String getLineitemId() { return LineItemId; }
 
     public String getProductId() { return productId; }
+    
 
-    public String getOrderId() { return orderId; }
     
     public int getQuantity() { return quantity; }
+    
+
+    
+    public double getPrice() { return price; }
+    
+    public double getTotalPrice() { return totalprice; }
+    
+    public String getOrderId() { return orderId; }
 }
