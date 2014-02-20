@@ -3,16 +3,16 @@ import database.Database;
 
 public class Customer {
     String firstName, lastName, address, phoneNumber, email, id;
-	Database database = new Database();
+    Database database = new Database();
 
-	public Customer() {
-		firstName = "";
-		lastName = "";
-		address = "";
-		phoneNumber = "";
-		email = "";
-                id = "";
-	}
+    public Customer() {
+            firstName = "";
+            lastName = "";
+            address = "";
+            phoneNumber = "";
+            email = "";
+            id = "";
+    }
 
     public void setFirstName( String value )
     {
@@ -34,11 +34,11 @@ public class Customer {
         email = value;
     }
 
-	public void setPhoneNumber( String value )
+    public void setPhoneNumber( String value )
     {
         phoneNumber = value;
     }
-
+    
     public String getFirstName() { return firstName; }
 
     public String getLastName() { return lastName; }
@@ -49,18 +49,18 @@ public class Customer {
     
     public String getPhoneNumber() { return phoneNumber; }
 	
+    public String getCustomerId()
+    {
+        return database.nextCustomerId();
+    }
+    
     public String save(){
         return database.saveCustomer(firstName,lastName,address,email,phoneNumber);
     }
     
-    public String getCustomerId()
-    {
-        return database.customerId();
-    }  
-    
     public String getProductTable()
     {
-        id = database.productTable();
-        return id;
+        this.id = database.productTable();
+        return this.id;
     }
 }

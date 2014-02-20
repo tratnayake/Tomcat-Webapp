@@ -8,84 +8,106 @@ import java.util.*;
 
 public class Order {
    
-	Database database = new Database();
-	
-        String orderId;
-        String orderDate;
-        Double orderTotalCost;
-        ArrayList<LineItem> items = new ArrayList<LineItem>();
-        String customerId;
-        
+    Database database = new Database();
+    ArrayList<LineItem> items = new ArrayList<LineItem>();
+    ArrayList<String[]> itemsSummary = new ArrayList<>();
+    
 
-	public Order() {
-	orderId="";
+    String orderId, orderDate, customerId;
+    int orderTotalCost;    
+
+
+    public Order() {
+        orderId="";
         orderDate="";
-        orderTotalCost=0.0;
-        customerId = "";
-        
-	}
+        orderTotalCost=0;
+        customerId = "";       
+    }
 
     public void setOrderId( String value )
     {
-        orderId = database.nextOrderID();
+        orderId = database.nextOrderId();
     }
     
     public void setOrderDate(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
-        orderDate = dateFormat.format(date);
+        this.orderDate = dateFormat.format(date);
     }
-    
-   
     
     public String getOrderId() { return orderId; }
     
     public String getOrderDate() { return orderDate; }
     
-    public String getOrderTotalCost() { 
-        
-        String test ="";
-    //STILL TESTING
-    for (LineItem item: items){
-         test += item.toString();
-    }
-    
-    return test;
-    
-        //foreach lineitem in the order, compute the cost
-
-    
-    }
-    
-
- 
     
     public void createOrder(){
-       Customer cust = new Customer();
+       Customer customer = new Customer();
+       
         //Set the Order ID for this order
-        this.orderId = database.nextOrderID();
+        this.orderId = database.nextOrderId();
         
         //Set the date for this order
-       this.setOrderDate();
+       setOrderDate();
        
        // Set the customer ID
-       this.customerId = cust.getCustomerId();
-        
-        //Create lineorders for each element in array
-        
+       this.customerId = customer.getCustomerId();        
     }
     
-    public void addLineItem(String ProductID, int Qty){
+    public void addLineItem(String productId, int Qty){
+        
         LineItem item = new LineItem();
-        Database database = new Database();
         item.setOrderId(this.orderId);
         item.setLineItemId(database.nextLineItemId());
-        item.setProductId(ProductID);
+        item.setProductId(productId);
         item.setQuantity(Qty);
         
         //Add to array
         items.add(item);
         
+        String[] itemCustomer = new String[7];
         
+        String quantity = Integer.toString(Qty);
+        String type = database.getIndividualItem(productId, "type");
+        String size = database.getIndividualItem(productId, "size");
+        String color = database.getIndividualItem(productId, "color");
+        
+        String productCostString = database.getIndividualItem(productId, "price");
+        int productCost = Integer.parseInt(productCostString);        
+      
+        int costofItem = productCost * Qty;
+        String totalCostofItem = Integer.toString(costofItem);
+        orderTotalCost = orderTotalCost + costofItem;
+    
+        itemCustomer[0] = productId;
+        itemCustomer[1] = quantity;
+        itemCustomer[2] = type;
+        itemCustomer[3] = size;
+        itemCustomer[4] = color;
+        itemCustomer[5] = productCostString;
+        itemCustomer[6] = totalCostofItem;
+        itemsSummary.add(itemCustomer);       
     }
+    
+    
+    public String orderSummary(){
+
+        String summary = "<h3>Date of Order: " + orderDate + "</h3><br/>"
+                       + "<h3>Total Cost $" + orderTotalCost + "</h3><br/><br/>"
+                       + "<tr><td>Product ID</td><td>Quantity</td><td>Type</td><td>Size</td>"
+                       + "<td>Color</td><td>Cost Per</td><td>Total Cost</td></tr><tr>";
+        
+        for (int i=0; i < itemsSummary.size(); i++)
+        {
+            String[] item = itemsSummary.get(i);
+            for (int j=0; j < 7; j++)
+            {
+                summary += "<td>" + item[j] + "</td>";
+            }
+            summary += "</tr><tr>";
+        }
+		summary += "</tr>";
+
+        return summary;
+    }
+      
 }    

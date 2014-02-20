@@ -10,16 +10,13 @@
 
 <!-- calls Customer Bean for the session -->
 <jsp:useBean id="model" class="model.Customer" scope="session"/>
-<jsp:useBean id="order" class="model.Order" scope="page"/>
+<jsp:useBean id="order" class="model.Order" scope="session"/>
 <%@page import  = "java.util.*"%>
-<%@page import  = "java.*"%>
 
 <%
     int numberofitems = 14;
 
-//create an order
     order.createOrder();
-
 
     ArrayList lineItems = new ArrayList();   
     for (int i = 1; i <= numberofitems; i++)
@@ -30,14 +27,12 @@
         
         
         if (quantityasint > 0)
-        {   
-            // invoke Order.addLineItem(j,quantityasint);
-                    order.addLineItem(j,quantityasint);
-                    
-        }    
-        
+        {               
+            order.addLineItem(j,quantityasint);                   
+        }          
     }
-  out.println(order.getOrderTotalCost());
 %>
 
+<!-- redirects to order summary page -->
+<jsp:forward page="OrderConfirm.jsp" />
 

@@ -12,23 +12,19 @@
 
 <%@ include file="template/header.jsp" %>
 
-	
-	
-	<summary>
-		"WACKO Furniture" is a online furniture company. If you're looking for tables, chairs, or couches, you've come to the right place.	
-	</summary>
-	
-	
-	
+
 	<!-- Buttons for view products/place order -->
+
 	<section>
-		<h2>Choose an option:</h2>
-		<form action="http://google.com">
-			<input class="btn" type="submit" value="View Products">
-		</form>
-		<form action="PlaceOrderController.jsp">
-			<input class="btn" type="submit" value="Place Order">
-		</form>
+		<h2>Choose an option:</h2>	
+			<form action="http://google.com">
+				<input class="btn" type="submit" value="View Products">
+			</form>
+			<br style="clear: left;" />
+			<form action="PlaceOrderController.jsp">
+				<input class="btn" type="submit" value="Place Order">
+			</form>
 	</section> 
+
 	
 <%@ include file="template/footer.jsp" %>

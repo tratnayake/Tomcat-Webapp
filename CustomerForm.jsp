@@ -17,9 +17,6 @@
 
 	<section>
 	
-		<!-- Form layout -->
-		<div class="formcontainer">
-		
 			<h2>Enter Customer Information:</h2>
 			<form name="CustomerForm" action='CustomerController.jsp' method="post">		
 				<table class="form">
@@ -48,13 +45,13 @@
 				    <td><input  type="text" name="phoneNumber" id="phoneNumber" placeholder="PHONE NUMBER"
 				    			value="<jsp:getProperty name="model" property="phoneNumber" />" required></td>
 				  </tr>
-				  <tr>
-					<td><button class="button" type="submit" value="submit">SUBMIT</button></td>
-				  </tr>
-				</table
+				 
+				</table>
+				
+				<button class="btn" type="submit" value="submit">SUBMIT</button></td>
+				 
 			</form>  
-			
-		</div> <!-- formcontainer -->
+				
 	</section>
 
 <%@ include file="template/footer.jsp" %>

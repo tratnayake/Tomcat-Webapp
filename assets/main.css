@@ -1,3 +1,101 @@
 body{
 	background-color: #b4d4f6;
 	}
+	
+.container {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 30px;
+	border: 10px solid white;
+}
+
+h1 {
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+}	
+
+summary {
+	height: 150px;
+}
+
+section {
+	width 80%;
+    margin-left: auto;
+	margin-right: auto;
+	display: block;
+	text-align: center;	
+}
+
+
+.btn {
+	margin-left: auto;
+	margin-right: auto;
+	background: #212121; 
+	display: inline-block; 
+	padding: 5px 10px 6px; 
+	color: #fff; 
+	text-decoration: none;
+	width: 20%;	
+	height: 40px;
+}
+
+.spacer {
+	height: 150px;
+}
+
+
+footer {
+	text-align: center;
+}
+
+.form {
+	text-align: center;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+
+
+
+.searchtable
+{
+	font-size: 12px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	text-align: left;
+	border-collapse: collapse;
+	
+}
+
+.searchtable th
+{
+	font-size: 13px;
+	font-weight: bold;
+	padding-left: 20px;
+	padding-top: 10px;
+	background: #ffff99;
+	border-top: 4px solid #ffff8a;
+	border-bottom: 1px solid #fff;
+	color: #000000;
+	
+}
+.searchtable td
+{
+	padding-left: 20px;
+	padding-top: 10px;
+	padding-right: 5px;
+	background: #ffffbc; 
+	border-bottom: 1px solid #fff;
+	color: #000000;
+	border-top: 1px solid transparent;
+}
+
+
+
+

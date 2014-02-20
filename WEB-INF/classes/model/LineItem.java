@@ -10,15 +10,16 @@ public class LineItem {
         LineItemId = "";
         quantity = 0;
         productId = "";
-        totalprice = 0.0;
         orderId ="";
-
+        price = 0.0;
+        totalprice = 0.0;
     }
 
     
     public void setOrderId (String value){
         orderId = value;
     }
+    
     public void setLineItemId( String value )
     {
         LineItemId = value;
@@ -29,33 +30,24 @@ public class LineItem {
         productId = value;
     }
 
-   
-    
     public void setQuantity( int value )
     {
         quantity = value;
     }
     
-
-    
     public void setPrice (double value){
         price = value;
     }
     
-    public void setTotalPrice(){
+    public void setTotalPrice(int price, int quantity){
         totalprice = price * quantity;
     }
   
-
     public String getLineitemId() { return LineItemId; }
 
     public String getProductId() { return productId; }
     
-
-    
     public int getQuantity() { return quantity; }
-    
-
     
     public double getPrice() { return price; }
     

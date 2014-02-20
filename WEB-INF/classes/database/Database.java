@@ -1,6 +1,5 @@
 package database;
 import  java.sql.*;
-import java.util.*;
 
 public class Database{
 
@@ -9,65 +8,108 @@ private Connection dbconn = null;
 
 private String result   = "OK";
 private String query    = "";
-private String dburl    = "jdbc:odbc:WACKO";
-private String dbdriver = "sun.jdbc.odbc.JdbcOdbcDriver" ;
-public String customerid = "";
-public String productTable = "";
-public String productId = "";
-public String orderId = "";
-
+private final String dburl    = "jdbc:odbc:WACKO";
+private final String dbdriver = "sun.jdbc.odbc.JdbcOdbcDriver" ;
 
 
 public Database(){ }
     
-    // You will need to add some parameters
+    // Saves customer class into Customer Database
     public String saveCustomer(String lName, String fName, String address, String email, String phone){ 
 
-    result = connect();
+        result = connect();
 
-    query  = " insert into Customer (lastName,firstName,address,email,phone)";
-    query += " values (";
-    query += "'" + lName + "',";
-    query += "'" + fName + "',";
-    query += "'" + address + "',";
-    query += "'" + email + "',";
-    query += "'" + phone + "')";
+        query  = " insert into Customer (lastName,firstName,address,email,phone)";
+        query += " values (";
+        query += "'" + lName + "',";
+        query += "'" + fName + "',";
+        query += "'" + address + "',";
+        query += "'" + email + "',";
+        query += "'" + phone + "')";
+
+        try{
+            stmt.execute(query);
+        }
+        catch (SQLException e){   
+            result  = " Save Customer:  Error processing the SQL!";
+            result += " <br/>" +  e.toString();
+        }
+        finally{
+        close();
+        }
+        return result;
+    }
     
-    try{
-        stmt.execute(query);
-    }
-    catch (SQLException e){   
-        result  = " Save Customer:  Error processing the SQL!";
-        result += " <br/>" +  e.toString();
-    }
-    finally{
-    close();
-    }
-    return result;
-    }
+    // Saves order class into Order Database
+    public String saveOrder(String orderId, String orderDate, String orderTotal, String customerId){ 
+
+        result = connect();
+
+        query  = " insert into Customer (lastName,firstName,address,email,phone)";
+        query += " values (";
+        query += "'" + orderId + "',";
+        query += "'" + orderDate + "',";
+        query += "'" + orderTotal + "',";
+        query += "'" + customerId + "')";
+
+        try{
+            stmt.execute(query);
+        }
+        catch (SQLException e){   
+            result  = " Save Customer:  Error processing the SQL!";
+            result += " <br/>" +  e.toString();
+        }
+        finally{
+        close();
+        }
+        return result;
+    }	
     
+    
+    // Saves lineitem class into LineItem Database
+    public String saveLineItem(String lineItemId, int qty, String productId, String orderId){ 
+
+        result = connect();
+
+        query  = " insert into Customer (lastName,firstName,address,email,phone)";
+        query += " values (";
+        query += "'" + lineItemId + "',";
+        query += "'" + qty + "',";
+        query += "'" + productId + "',";
+        query += "'" + orderId + "')";
+
+        try{
+            stmt.execute(query);
+        }
+        catch (SQLException e){   
+            result  = " Save Customer:  Error processing the SQL!";
+            result += " <br/>" +  e.toString();
+        }
+        finally{
+        close();
+        }
+        return result;
+    }    
 	
-	
-    //Get Customer ID
-    public String customerId()
+    //Gets next Customer ID
+    public String nextCustomerId()
     {
+        String customerid = "1";
         result = connect();
         query = " select customerId from Customer";
 
-        try{
-            if (stmt.execute(query))
+        try{          
+            stmt.execute(query);
+            ResultSet searchResult = stmt.getResultSet();         
+
+            if (searchResult != null)
             {
-                ResultSet searchResult = stmt.getResultSet();         
-                
-                if (searchResult != null)
-                {
-                    while (searchResult.next())
-                    {
-                        customerid = "";
-                        customerid = searchResult.getString("customerId");
-                    }    
+                while (searchResult.next())
+                {                      
+                    searchResult.getRow();
+                    customerid = searchResult.getString(1);
                 }    
-            }          
+            }                         
             result = customerid;         
         }
         catch (SQLException e){   
@@ -81,9 +123,10 @@ public Database(){ }
         return result;    
     }
     
-        //Get Customer ID
+    //Gets the Product Table
     public String productTable()
     {
+        String productTable = "";
         result = connect();
         query = " select * from ProductCatalog";
         
@@ -104,6 +147,7 @@ public Database(){ }
                 }
                 productTable += "</tr>"; 
 
+                String productId = "";
                 while (searchResult.next())
                 {
                     searchResult.getRow();
@@ -142,83 +186,105 @@ public Database(){ }
         return result;    
     }
     
-    
-    public String nextOrderID()
+    // Gets the last Order ID
+    public String nextOrderId()
     {
-            result = connect();
-	
-	    query  = " select orderId from OrderInfo";
+        String orderId = "1";    
+        result = connect();
+        query  = " select orderId from OrderInfo";
 	    
-	    try{
-	        if (stmt.execute(query))
+        try{
+            stmt.execute(query);    
+            ResultSet searchResult = stmt.getResultSet();         
+
+            if (searchResult != null)
             {
-                ResultSet searchResult = stmt.getResultSet();         
-                
-                if (searchResult != null)
+                while (searchResult.next())
                 {
-                    while (searchResult.next())
-                    {
-                        orderId = "";
-                        orderId = searchResult.getString("orderId");
-                    }    
-                }
-                else
-                {
-	                orderId = "1";
+                    searchResult.getRow();
+                    orderId = searchResult.getString(1);
                 }    
-            }           
-            result = orderId;
-	    }
+            }
+        result = orderId;
+        }
 	    
-	    catch (SQLException e){   
-	        result  = " Save Customer:  Error processing the SQL!";
-	        result += " <br/>" +  e.toString();
-	    }
-	    finally{
-	    close();
-	    }
-	    return result;
-	    	    
+        catch (SQLException e){   
+            result  = " Next orderid:  Error processing the SQL!";
+            result += " <br/>" +  e.toString();
+        }
+        finally{
+        close();
+        }
+        return result;	    	    
     }
     
-        public String nextLineItemId()
-    {
-            String lineItemId = "";
-            result = connect();
-	
-	    query  = " select lineItemId from LineItem";
-	    
-	    try{
-	        if (stmt.execute(query))
+    
+    // Gets next LineItem ID
+    public String nextLineItemId(){
+        String lineItemId = "1";
+        result = connect();
+
+        query  = " select lineItemId from LineItem";
+
+        try{	    
+            stmt.execute(query);
+            ResultSet searchResult = stmt.getResultSet();         
+
+            if (searchResult != null)
             {
-                ResultSet searchResult = stmt.getResultSet();         
-                
-                if (searchResult != null)
+                while (searchResult.next())
                 {
-                    while (searchResult.next())
-                    {
-                        lineItemId = "";
-                        lineItemId = searchResult.getString("lineItemId");
-                    }    
-                }
-                else
-                {
-	                lineItemId = "1";
+                    searchResult.getRow();
+                    lineItemId = searchResult.getString(1);
                 }    
-            }           
-            result = lineItemId;
-	    }
-	    
-	    catch (SQLException e){   
-	        result  = " Save Customer:  Error processing the SQL!";
-	        result += " <br/>" +  e.toString();
-	    }
-	    finally{
-	    close();
-	    }
-	    return result;
-	    	    
+            }         
+        result = lineItemId;
+        }
+
+        catch (SQLException e){   
+            result  = " Next line item:  Error processing the SQL!";
+            result += " <br/>" +  e.toString();
+        }
+        finally{
+        close();
+        }
+        return result;	    	    
     }
+    
+    // Gets the individual product cost from product table
+    public String getIndividualItem(String productId, String columnName){
+
+        String itemCost = "";
+        result = connect();
+
+        query  = " select " +columnName + " from ProductCatalog"
+               + " where productId='" + productId + "'";
+
+        try{	    
+            stmt.execute(query);
+            ResultSet searchResult = stmt.getResultSet();         
+
+            
+            if (searchResult != null)
+            {
+                while (searchResult.next())
+                {
+                    searchResult.getRow();
+                    itemCost = searchResult.getString(1);
+                }    
+            }              
+            result = itemCost;
+        }
+
+        catch (SQLException e){   
+            result  = " Individual item:  Error processing the SQL!";
+            result += " <br/>" +  e.toString();
+        }
+        finally{
+        close();
+        }
+        return result;	    	    
+    }    
     
     
     
