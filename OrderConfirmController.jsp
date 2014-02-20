@@ -24,8 +24,11 @@
   
 	else if (Clicked.equals("confirm"))
     {
-		
-		
+	
+        order.addDatabaseOrder();
+
+	order.addDatabaseLineItems();
+        
 		
 		
 		

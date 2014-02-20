@@ -57,7 +57,6 @@ public class Order {
         
         LineItem item = new LineItem();
         item.setOrderId(this.orderId);
-        item.setLineItemId(database.nextLineItemId());
         item.setProductId(productId);
         item.setQuantity(Qty);
         
@@ -91,8 +90,8 @@ public class Order {
     
     public String orderSummary(){
 
-        String summary = "<h3>Date of Order: " + orderDate + "</h3><br/>"
-                       + "<h3>Total Cost $" + orderTotalCost + "</h3><br/><br/>"
+        String summary = "<h3>Date of Order: " + orderDate + "</h3>"
+                       + "<h3>Total Cost $" + orderTotalCost + "</h3><br/>"
                        + "<tr><td>Product ID</td><td>Quantity</td><td>Type</td><td>Size</td>"
                        + "<td>Color</td><td>Cost Per</td><td>Total Cost</td></tr><tr>";
         
@@ -108,6 +107,17 @@ public class Order {
 		summary += "</tr>";
 
         return summary;
+    }
+    
+    public void addDatabaseLineItems(){
+        for (LineItem s : items) {          
+            //   (String lineItemId, int qty, String productId, String orderId){ 
+            database.saveLineItem(s.getLineitemId(), s.getQuantity(), s.getProductId(), s.getOrderId());
+        }
+    }
+    public void addDatabaseOrder(){
+        // public String saveOrder(String orderId, String orderDate, String orderTotal, String customerId)
+        database.saveOrder(this.orderDate,Integer.toString(this.orderTotalCost), this.customerId);
     }
       
 }    

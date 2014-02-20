@@ -73,18 +73,6 @@ footer {
 	
 }
 
-.searchtable th
-{
-	font-size: 13px;
-	font-weight: bold;
-	padding-left: 20px;
-	padding-top: 10px;
-	background: #ffff99;
-	border-top: 4px solid #ffff8a;
-	border-bottom: 1px solid #fff;
-	color: #000000;
-	
-}
 .searchtable td
 {
 	padding-left: 20px;
@@ -95,6 +83,7 @@ footer {
 	color: #000000;
 	border-top: 1px solid transparent;
 }
+
 
 
 

@@ -15,22 +15,22 @@
 
 <section>
    
-	<h2>Customer:&nbsp<%= model.getLastName() %>&nbsp<%= model.getFirstName() %></h2><br/>
-	<h2>ID:&nbsp<%= model.getCustomerId() %></h2><br/>	
-	<br style="clear: left;" />	
-	
-	<table class="form searchtable">
-		<%= order.orderSummary() %>
-	</table>
-	<br style="clear: left;" />
-       
-	<form action="OrderConfirmController.jsp">
-		<button class="btn" name="option" type="submit" value="confirm">Confirm</button>
-	</form>
+    <h2>Customer:&nbsp<%= model.getLastName() %>&nbsp<%= model.getFirstName() %></h2>
+    <h2>ID:&nbsp<%= model.getCustomerId() %></h2>	
+    <br style="clear: left;" />	
 
-	<form action="OrderConfirmController.jsp">
-		<button class="btn" name="option" type="submit" value="cancel">Cancel</button>
-	</form>
+    <table class="form searchtable">
+            <%= order.orderSummary() %>
+    </table>
+    <br style="clear: left;" />
+
+    <form action="OrderConfirmController.jsp">
+            <button class="btn" name="option" type="submit" value="confirm">Confirm</button>
+    </form>
+
+    <form action="OrderConfirmController.jsp">
+            <button class="btn" name="option" type="submit" value="cancel">Cancel</button>
+    </form>
 
 </section>
 

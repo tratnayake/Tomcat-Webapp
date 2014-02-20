@@ -17,10 +17,8 @@
 			<table class="form searchtable">
 				<%= model.getProductTable() %>
 			</table>
+                        <button class="btn" type="submit" value="submit">SUBMIT</button>
 		</form>
-		
-		<button class="btn" type="submit" value="submit">SUBMIT</button>
-		
 	</section>
 
 <%@ include file="template/footer.jsp" %>

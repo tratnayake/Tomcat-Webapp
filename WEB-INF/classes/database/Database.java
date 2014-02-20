@@ -41,13 +41,13 @@ public Database(){ }
     }
     
     // Saves order class into Order Database
-    public String saveOrder(String orderId, String orderDate, String orderTotal, String customerId){ 
+    public String saveOrder(String orderDate, String orderTotal, String customerId){ 
 
         result = connect();
 
-        query  = " insert into Customer (lastName,firstName,address,email,phone)";
+        query  = " insert into OrderInfo (orderDate,orderTotal,customerId)";
         query += " values (";
-        query += "'" + orderId + "',";
+        
         query += "'" + orderDate + "',";
         query += "'" + orderTotal + "',";
         query += "'" + customerId + "')";
@@ -71,12 +71,12 @@ public Database(){ }
 
         result = connect();
 
-        query  = " insert into Customer (lastName,firstName,address,email,phone)";
+        query  = " insert into LineItem(qty,productId,orderId)";
         query += " values (";
-        query += "'" + lineItemId + "',";
+        //query += "'" + lineItemId + "',";
         query += "'" + qty + "',";
-        query += "'" + productId + "',";
-        query += "'" + orderId + "')";
+        query += "'" + Integer.parseInt(productId) + "',";
+        query += "'" + Integer.parseInt(orderId) + "')";
 
         try{
             stmt.execute(query);
@@ -140,12 +140,12 @@ public Database(){ }
            
                 int numberofcolumns = metadata.getColumnCount();
 
-                productTable = "<table><tr>";
+                productTable = "<tr>";
                 for (int i = 1; i <= numberofcolumns; i++)
                 {
                     productTable += "<td>" + metadata.getColumnLabel(i) + "</td>";
                 }
-                productTable += "</tr>"; 
+                productTable += "<td>Quantity</td></tr>"; 
 
                 String productId = "";
                 while (searchResult.next())
@@ -170,7 +170,7 @@ public Database(){ }
                     productTable += "<td><input type=\"number\" name=\"" + productId +"\" min=\"0\" value=\"0\"></td>";
                     productTable += "</tr>";
                 }
-                productTable += "</table>";
+                
                     
             }          
             result = productTable;         
@@ -189,7 +189,7 @@ public Database(){ }
     // Gets the last Order ID
     public String nextOrderId()
     {
-        String orderId = "1";    
+        int orderId = 1;    
         result = connect();
         query  = " select orderId from OrderInfo";
 	    
@@ -202,10 +202,10 @@ public Database(){ }
                 while (searchResult.next())
                 {
                     searchResult.getRow();
-                    orderId = searchResult.getString(1);
+                    orderId = Integer.parseInt(searchResult.getString(1))+1;
                 }    
             }
-        result = orderId;
+        result = Integer.toString(orderId);
         }
 	    
         catch (SQLException e){   
@@ -219,37 +219,7 @@ public Database(){ }
     }
     
     
-    // Gets next LineItem ID
-    public String nextLineItemId(){
-        String lineItemId = "1";
-        result = connect();
 
-        query  = " select lineItemId from LineItem";
-
-        try{	    
-            stmt.execute(query);
-            ResultSet searchResult = stmt.getResultSet();         
-
-            if (searchResult != null)
-            {
-                while (searchResult.next())
-                {
-                    searchResult.getRow();
-                    lineItemId = searchResult.getString(1);
-                }    
-            }         
-        result = lineItemId;
-        }
-
-        catch (SQLException e){   
-            result  = " Next line item:  Error processing the SQL!";
-            result += " <br/>" +  e.toString();
-        }
-        finally{
-        close();
-        }
-        return result;	    	    
-    }
     
     // Gets the individual product cost from product table
     public String getIndividualItem(String productId, String columnName){
